@@ -83,6 +83,37 @@ class DoublyLinkedList:
                 found_node.previous.next = new_node
             found_node.previous = new_node
 
+    # Search a node
+    def search_node(self, node):
+        if self.head.data == node or self.tail.data == node:
+            return True
+        temp = self.head
+        while temp:
+            if temp.data == node:
+                return True
+            temp = temp.next
+        return False
+    
+    # Delete a node from the beginning
+    def delete_from_beginnig(self):
+        temp = self.head
+        if temp and temp.data:
+            temp.next.previous = None
+            self.head = temp.next
+            temp.next = None
+        else:
+            print("No data found to delete!.")
+    
+    # Delete from the end
+    def delete_from_end(self):
+        temp = self.tail
+        if temp and temp.data:
+            temp.previous.next = None
+            self.tail = temp.previous
+            temp.previous = None
+        else:
+            print("No data found to delete!")
+
     # Reverse traversal
     def reverse_traversal(self):
         temp = self.tail
@@ -116,6 +147,10 @@ doubly_linked_list.insert_after_node(6,5)
 doubly_linked_list.insert_after_node(5,1)
 doubly_linked_list.insert_before_node(3, 4)
 doubly_linked_list.insert_before_node(3,7)
+# doubly_linked_list.delete_from_beginnig()
+# doubly_linked_list.delete_from_end()
+# doubly_linked_list.delete_from_end()
 doubly_linked_list.display_doubly_linked_list()
 print('----------------------------')
 doubly_linked_list.reverse_traversal()
+print(doubly_linked_list.search_node(10))
