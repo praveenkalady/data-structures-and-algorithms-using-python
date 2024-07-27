@@ -31,7 +31,6 @@ class DoublyLinkedList:
     # Insert at end of the doubly linked list
     def insert_at_end(self, data):
         temp = self.tail;
-        print(temp.data,"temp")
         new_node = Node(data)
         if not temp:
             new_node.next = None
@@ -64,6 +63,26 @@ class DoublyLinkedList:
                 found_node.next.previous = new_node
             found_node.next = new_node
 
+    # Insert before a given node
+    def insert_before_node(self, node, data):
+        temp = self.head
+        found_node = None
+        if node == temp.data:
+            self.insert_at_beginnig(data)
+            return
+        while temp:
+            if temp.data == node:
+                found_node = temp
+                break
+            temp = temp.next
+        if found_node:
+            new_node = Node(data)
+            new_node.next = found_node
+            new_node.previous =  found_node.previous
+            if found_node.previous:
+                found_node.previous.next = new_node
+            found_node.previous = new_node
+
     # Reverse traversal
     def reverse_traversal(self):
         temp = self.tail
@@ -93,9 +112,10 @@ doubly_linked_list.insert_at_beginnig(2)
 doubly_linked_list.insert_at_beginnig(6)
 doubly_linked_list.insert_at_beginnig(3)
 doubly_linked_list.insert_at_end(9)
-doubly_linked_list.display_doubly_linked_list()
 doubly_linked_list.insert_after_node(6,5)
 doubly_linked_list.insert_after_node(5,1)
+doubly_linked_list.insert_before_node(3, 4)
+doubly_linked_list.insert_before_node(3,7)
 doubly_linked_list.display_doubly_linked_list()
 print('----------------------------')
 doubly_linked_list.reverse_traversal()
